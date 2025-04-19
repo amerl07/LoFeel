@@ -1,0 +1,45 @@
+<!-- Main page, for structures (drop down menus, title, quote box...), links to style and script -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LoFeel</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    
+    <body>
+        <h1>LoFeel</h1>
+
+        <div class="dropdown">
+            <button class="dropbtn">How are we feeling?</button>
+            <div class="dropdown-content">
+                <a href="#" data-value="bright">Bright</a> <!--using "a" tags with fake link #-->
+                <a href="#" data-value="chill">Chill</a>
+                <a href="#" data-value="focused">Focused</a>
+                <a href="#" data-value="dreamy">Dreamy</a>
+                <a href="#" data-value="sad">Sad</a>
+            </div>
+        </div>
+
+        <div id="quote" class="quote-box">
+            <!-- Quote goes here, changed by updateQuote function -->
+        </div>
+
+        <div id="music-player" class="music-box">
+            <!-- YouTube iframe will go here -->
+        </div>
+
+        <div id="clock" class="clock-widget">
+            <!-- Clock goes here -->
+        </div>
+
+        <div class="image-strip">
+            <!-- Auto-scrolling images go here -->
+        </div>
+
+    <script src="script.js"></script>
+    </body>
+
+</html>
