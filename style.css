@@ -3,17 +3,43 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
+h1 {
+  color: #f7f6f3;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0;
+}
   
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #f7f6f3;
-    color: #333;
+    background: linear-gradient(90deg,rgba(253, 187, 45, 1) 0%, rgba(34, 193, 195, 1) 100%);
+    color: #f7f6f3; /*text colour*/
     padding: 2rem;
     transition: background 0.5s ease;
   }
   
+  .header-bar {
+    display: flex;
+    justify-content: space-between;  /*title on left, buttons on right */
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+
+  .button-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /*spacing between the two buttons*/
+  }
+
+
 /*DROPDOWN BUTTON*/
   .dropdown {
     position: relative;
@@ -21,11 +47,14 @@ body {
   }
 
   .dropbtn {
-    background-color: #04AA6D;
-    color: white;
+    background-color: rgba(0,0,0,0.2);
+    color: #f7f6f3;
     padding: 16px;
+    font-family: inherit;
     font-size: 16px;
+    font-weight: bold;
     border: none;
+    border-radius: 20px;
   }
   
   .dropdown-content {
@@ -55,22 +84,96 @@ body {
   }
   
   .mood-chill {
-    background: linear-gradient(139deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%);
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%);
   }
   
   .mood-bright {
-    background: linear-gradient(162deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
   }
   
   .mood-sad {
-    background: linear-gradient(151deg, rgba(2, 0, 36, 1) 0%, rgba(20, 167, 196, 1) 100%);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(20, 167, 196, 1) 100%);
   }
   
   .mood-dreamy {
-    background: linear-gradient(338deg, rgba(238, 174, 202, 1) 0%, rgba(28, 102, 186, 1) 100%);
+    background: linear-gradient(90deg, rgba(28, 102, 186, 1) 0%, rgba(238, 174, 202, 1) 100%);
   }
   
   .mood-focused {
-    background: linear-gradient(137deg, rgba(31, 31, 44, 1) 0%, rgba(88, 72, 140, 1) 100%);
+    background: linear-gradient(90deg, rgba(31, 31, 44, 1) 0%, rgba(88, 72, 140, 1) 100%);
   }
   
+  /*QUOTE BOX*/
+
+  .quote-box{
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+
+  /*MUSIC PLAYER & CLOCK*/
+  .music-clock-container {
+    display: flex;
+    justify-content: space-between; /*add space between player and clock*/
+    align-items: stretch; /*force children to match height*/
+    gap: 2rem; /*optional spacing between them*/
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+  
+  /*MUSIC PLAYER*/
+  .music-box { /*dot expression selects the whole class*/
+    display: flex;
+    justify-content: center; /*horizontal centering*/
+    align-items: center; /*vertical centering*/
+    width: 600px;
+    height: 360px;
+
+    background: #fcfbf1;
+    border-radius: 30px; /*box with rounded corners*/
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  #new-song-btn { /*hashtag selects the id*/
+    background-color: rgba(0,0,0,0.2);
+    color: #f7f6f3;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+  }
+
+  /*CLOCK*/
+  .clock-widget {
+    display: flex;
+    flex-direction: column;     /*stack text vertically*/
+    justify-content: center;
+    align-items: center;
+
+    width: 30%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    color: #f7f6f3;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) { /*vertically stack if screen is small*/
+    .music-clock-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .music-box,
+    .clock-widget {
+      width: 100%;
+    }
+  }

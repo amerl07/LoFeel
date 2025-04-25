@@ -10,34 +10,43 @@
     </head>
     
     <body>
+        <div class="header-bar">
         <h1>LoFeel</h1>
 
-        <div class="dropdown">
-            <button class="dropbtn">How are we feeling?</button>
-            <div class="dropdown-content">
-                <a href="#" data-value="bright">Bright</a> <!--using "a" tags with fake link #-->
-                <a href="#" data-value="chill">Chill</a>
-                <a href="#" data-value="focused">Focused</a>
-                <a href="#" data-value="dreamy">Dreamy</a>
-                <a href="#" data-value="sad">Sad</a>
+            <div class="dropdown">
+                <button class="dropbtn">How are we feeling?</button>
+                <div class="dropdown-content">
+                    <a href="#" data-value="bright">Bright</a> <!--using "a" tags with fake link #-->
+                    <a href="#" data-value="chill">Chill</a>
+                    <a href="#" data-value="focused">Focused</a>
+                    <a href="#" data-value="dreamy">Dreamy</a>
+                    <a href="#" data-value="sad">Sad</a>
+                </div>
+
+                <button id="new-song-btn">New Song</button>
             </div>
         </div>
 
-        <div id="quote" class="quote-box">
+        <br>
+        <div id="quote" class="quote-box"> <!--Using both id and class. JS uses id, css uses class for shared styles-->
             <!-- Quote goes here, changed by updateQuote function -->
         </div>
 
-        <div id="music-player" class="music-box">
-            <!-- YouTube iframe will go here -->
-        </div>
+        <div class="music-clock-container">
+            
+            <div id="music-player" class="music-box">
+                <!-- YouTube iframe goes here, changed by updateMusic function -->
+            </div>
 
-        <div id="clock" class="clock-widget">
-            <!-- Clock goes here -->
+            <div id="clock" class="clock-widget">
+                <!-- Clock goes here, changed by updateClock function -->
+            </div>
         </div>
 
         <div class="image-strip">
             <!-- Auto-scrolling images go here -->
         </div>
+
 
     <script src="script.js"></script>
     </body>
