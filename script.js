@@ -52,13 +52,12 @@ function updateQuote() {
 
 //MUSIC PLAYER UPDATE (based on mood)
 const musicVideos = { //video ids
-    chill: ["LeZyIID9Bo", "BCxTQq0UiFs", "kyqpSycLASY", "UbXYxaf1itQ"],
-    dreamy: ["q22uHBl9qxw", "PpJQZH9B1Y4", "QltODNFwp20", "90QqkQNzMFk", "4dV96eVRrjk"],
-    focused: ["amfWIRasxtI", "P4r9LeM7DiQ"],
-    sad: ["xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0"],
-    bright: ["gUbNlN_SqpE", "AhJ9-AtFje0"]
+    chill: ["qPAiYaZOGeQ", "BCxTQq0UiFs", "kyqpSycLASY", "UbXYxaf1itQ", "6mN1780N9vg", "2au51-rm6cE"],
+    dreamy: ["FlnsZeivkPM", "BnjWrOTdKZo", "Jm8PuBFDabE", "UMhOGEo8O5A", "q22uHBl9qxw", "PpJQZH9B1Y4", "QltODNFwp20", "90QqkQNzMFk", "4dV96eVRrjk"],
+    focused: ["amfWIRasxtI", "P4r9LeM7DiQ", "ptHnmgaFvwE", "l-2hOKIrIyI&pp=ygUKc3R1ZHkgbG9madIHCQmECQGHKiGM7w%3D%3D", "hGrIgIfCxP0&pp=ygUKc3R1ZHkgbG9maQ%3D%3D", "FJflWlFyhRE"],
+    sad: ["89TTVAW_JHk", "xsDnEj2Hx4Q", "xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0", "2FNz4D67KhE&pp=ygUKY2hpbGwgbG9maQ%3D%3D"],
+    bright: ["DJKIIzOD6y8", "UCQM2ounTcs", "I140iNpx1xM&pp=ygUKaGFwcHkgbG9maQ%3D%3D", "gUbNlN_SqpE", "AhJ9-AtFje0", "3gKeFiHK_4&pp=ygUKc3R1ZHkgbG9maQ%3D%3D"]
   };
-  
 
 function updateMusic(mood) {
     //randomly playing video within that mood
