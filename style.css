@@ -177,3 +177,37 @@ body {
       width: 100%;
     }
   }
+
+
+/*IMAGE STRIP SCROLL*/
+.image-strip-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.image-strip {
+  display: flex;
+  gap: 1rem;
+  animation: scroll-strip 60s linear infinite; /*60s for one cycle*/
+}
+
+.image-strip img { /*each element inside the image-strip class*/
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+@keyframes scroll-strip { /*custom defined keyframes animation name*/
+  0% {
+    transform: translateX(0); /*images in normal place at start*/
+  }
+  100% {
+    transform: translateX(-50%); /*By the end let images move 50% to left*/
+    /*50% because we cloned the image once. After 60s we reach end of original set and start of cloned set. But here we reset, so it looks seemless*/
+  }
+}

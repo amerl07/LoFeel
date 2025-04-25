@@ -27,6 +27,7 @@ function applyMood(mood) { //changes background, calls to quote and music
 
     updateQuote(); //call the update function to change quote
     updateMusic(mood); //call the update function to change music
+    updateImageStrip(mood); //call the update function to change images
 }
 
 //QUOTE UPDATE (random, independent from mood)
@@ -117,3 +118,39 @@ document.addEventListener("DOMContentLoaded", () => {
     updateClock(); //show after the page loads
     setInterval(updateClock, 1000); //update every second
   });
+
+
+//UNSPLASH API
+
+const UNSPLASH_ACCESS_KEY = "03CjIStF__MLHGTYdFRrOsnS9_bTq5akSY5NcLND-nM";
+
+function updateImageStrip(mood) {
+    const strip = document.getElementById("image-strip");
+    strip.innerHTML = "" //clear it beforehand
+
+    const page = Math.floor(Math.random() * 10) + 1; //get a random page, so we don't get same images everytime
+
+    //same logic as API to quotes
+    fetch(`https://api.unsplash.com/search/photos?query=${mood},nature,scenery,landscape&per_page=10&orientation=landscape&page=${page}&client_id=${UNSPLASH_ACCESS_KEY}`)
+    .then(res => res.json()) //convert response to js object
+    .then(data => {
+        console.log("Unsplash image data:", data.results);
+        data.results.forEach(photo => { //loop through all photo objects
+            const img = document.createElement("img"); //make an image
+            img.src = photo.urls.small; //set the image url
+            strip.appendChild(img); //add image to the strip
+      });
+
+    //clone images for infinite loop
+    const images = [...strip.children];
+    images.forEach(img => {
+        const clone = img.cloneNode();
+        strip.appendChild(clone);
+        });
+    })
+    
+    .catch(error => {
+      console.error("Error fetching Unsplash images:", error);
+      strip.textContent = "Unable to load moodboard images.";
+    });
+}
