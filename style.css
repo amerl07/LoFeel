@@ -35,11 +35,19 @@ body {
 
 
   /*TOP FOUR BUTTONS*/
+  .button-group { /*Layout for button group container*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+   }
+
   .button-group button {
     background-color: rgba(0, 0, 0, 0.2);
     background-image: linear-gradient(to right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2)  51%, rgba(0,0,0,0.3)  100%);
-    background-size: 200% auto; /* 🔥 YOU NEED THIS */
-    background-position: left center; /* 🔥 Start from left */
+    background-size: 200% auto;
+    background-position: left center;
 
     color: #f7f6f3;
     padding: 16px;
@@ -52,13 +60,6 @@ body {
     transition: 0.3s;
     text-align: center;
   }
-  
-  .button-group { /*Layout for button group container*/
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
-   }
 
    .button-group button:hover {
      background-position: right center; /*change the direction of the change*/
@@ -186,7 +187,8 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  @media (max-width: 768px) { /*vertically stack if screen is small*/
+  /*Vertical Stacking for Small Screens*/
+  @media (max-width: 768px) { 
     .music-clock-container {
       flex-direction: column;
       align-items: stretch;
@@ -197,6 +199,44 @@ body {
       width: 100%;
     }
   }
+
+  /*button stacking on small screens*/
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+  }
+  
+  .dropdown {
+    width: 100%;
+  }
+  
+  .dropdown-content {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .button-group button {
+    width: 100%; /*let button take up whole horizontal space*/
+    text-align: right;
+    padding-right: 20px; /*add indentation so text isn't right on the edge*/
+  }
+}
+
+/*headbar stacking on small screens*/
+@media (max-width: 768px) {
+  .header-bar {
+    flex-direction: column; /* 标题和按钮垂直排列 */
+    align-items: flex-start; /* 左对齐 */
+    gap: 1rem;
+  }
+  
+  .button-group {
+    justify-content: flex-start; /* 在小屏幕上左对齐 */
+    width: 100%;
+  }
+}
 
 
 /*IMAGE STRIP SCROLL*/
