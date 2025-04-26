@@ -52,11 +52,18 @@ function updateQuote() {
 
 //MUSIC PLAYER UPDATE (based on mood)
 const musicVideos = { //video ids
+    //mood videos
     chill: ["qPAiYaZOGeQ", "BCxTQq0UiFs", "kyqpSycLASY", "UbXYxaf1itQ", "6mN1780N9vg", "2au51-rm6cE"],
     dreamy: ["FlnsZeivkPM", "BnjWrOTdKZo", "Jm8PuBFDabE", "UMhOGEo8O5A", "q22uHBl9qxw", "PpJQZH9B1Y4", "QltODNFwp20", "90QqkQNzMFk", "4dV96eVRrjk"],
-    focused: ["amfWIRasxtI", "P4r9LeM7DiQ", "ptHnmgaFvwE", "l-2hOKIrIyI&pp=ygUKc3R1ZHkgbG9madIHCQmECQGHKiGM7w%3D%3D", "hGrIgIfCxP0&pp=ygUKc3R1ZHkgbG9maQ%3D%3D", "FJflWlFyhRE"],
-    sad: ["89TTVAW_JHk", "xsDnEj2Hx4Q", "xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0", "2FNz4D67KhE&pp=ygUKY2hpbGwgbG9maQ%3D%3D"],
-    bright: ["DJKIIzOD6y8", "UCQM2ounTcs", "I140iNpx1xM&pp=ygUKaGFwcHkgbG9maQ%3D%3D", "gUbNlN_SqpE", "AhJ9-AtFje0", "3gKeFiHK_4&pp=ygUKc3R1ZHkgbG9maQ%3D%3D"]
+    focused: ["amfWIRasxtI", "P4r9LeM7DiQ", "ptHnmgaFvwE", "FJflWlFyhRE"],
+    sad: ["xsDnEj2Hx4Q", "xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0"],
+    bright: ["DJKIIzOD6y8", "UCQM2ounTcs", "gUbNlN_SqpE", "AhJ9-AtFje0"],
+
+    //theme videos
+    movies: ["OaourFG3xYY", "lRuWS5MYImg", "Dg0IjOzopYU"],
+    games: ["kzxzCOXPt7g", "b9KH9QPdh6A", "JJCFQtTPq_8"],
+    fantasy: ["r9I2RqnaJEo"],
+    celtic: ["KHFyUGCdvB4", "ipFaubyDUT4"]
   };
 
 function updateMusic(mood) {
@@ -79,6 +86,7 @@ function updateMusic(mood) {
     `;
 }
 
+//NEW SONG IN SAME MOOD BUTTON
 const newSongBtn = document.getElementById("new-song-btn"); 
 if (newSongBtn) { //just to check if button is here & finished loading
     newSongBtn.addEventListener("click", () => {
@@ -87,6 +95,20 @@ if (newSongBtn) { //just to check if button is here & finished loading
         }
     })
 }
+
+//RANDOM MOOD THEME BUTTON
+const allLinks = document.querySelectorAll(".dropdown-content a");
+const allOptions = Array.from(allLinks).map(link => link.dataset.value);
+
+const randomBtn = document.getElementById("random-btn");
+
+randomBtn.addEventListener("click", () => {
+    const randomChoice = allOptions[Math.floor(Math.random() * allOptions.length)]; //same as randomising index in updateMusic function
+    console.log("Random choice:", randomChoice);
+
+    applyMood(randomChoice);
+});
+
 
 //CLOCK UPDATE
 function updateClock() {
@@ -105,7 +127,6 @@ function updateClock() {
     const timeOfDay = (hours >= 18 || hours < 6) ? "tonight" : "today";
     const timeString = `${hours}:${minutes}:${seconds}`;
 
-
     const clock = document.getElementById("clock");
     clock.innerHTML = `
         It is ${timeString}<br><br>
@@ -120,24 +141,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //UNSPLASH API
-
 const UNSPLASH_ACCESS_KEY = "03CjIStF__MLHGTYdFRrOsnS9_bTq5akSY5NcLND-nM";
+
+const extraKeywords = { //for description of each mood/theme option
+    bright: ["bright", "sunshine"],
+    chill: ["chill", "calm"],
+    focused: ["focused", "minimal"],
+    dreamy: ["mist", "dream"],
+    sad: ["rain", "winter", "snow"],
+    
+    movies: ["cinematic"],
+    games: ["pixel", "abstract"],
+    fantasy: ["magical", "nature"],
+    celtic: ["forest", "ancient"]
+  };
 
 function updateImageStrip(mood) {
     const strip = document.getElementById("image-strip");
     strip.innerHTML = "" //clear it beforehand
 
     const page = Math.floor(Math.random() * 10) + 1; //get a random page, so we don't get same images everytime
-
+      
     //same logic as API to quotes
-    fetch(`https://api.unsplash.com/search/photos?query=${mood},nature,scenery,landscape&per_page=10&orientation=landscape&page=${page}&client_id=${UNSPLASH_ACCESS_KEY}`)
+    const keywords = extraKeywords[mood]
+
+    fetch(`https://api.unsplash.com/search/photos?query=${keywords}&per_page=10&orientation=landscape&page=${page}&client_id=${UNSPLASH_ACCESS_KEY}`)
     .then(res => res.json()) //convert response to js object
     .then(data => {
         console.log("Unsplash image data:", data.results);
         data.results.forEach(photo => { //loop through all photo objects
+
+            const container = document.createElement("div");
+            container.className = "image-wrapper"; //for credits
+
             const img = document.createElement("img"); //make an image
             img.src = photo.urls.small; //set the image url
-            strip.appendChild(img); //add image to the strip
+            strip.appendChild(img); //add image to the strip. strip used later in cloning
+
+            const credit = document.createElement("a");
+            credit.className = "photo-credit";
+            credit.href = photo.links.html;
+            credit.target = "_blank";
+            credit.rel = "noopener noreferrer";
+            credit.textContent = `Photo by ${photo.user.name} on Unsplash`;
+
+            container.appendChild(img); //add image to container
+            container.appendChild(credit); //add credit to container
+            strip.appendChild(container); //add container to strip
+
+            fetch(`${photo.links.download_location}?client_id=${UNSPLASH_ACCESS_KEY}`); //trigger photo download (just an api call, not actually downloading. As per the documentation.)
       });
 
     //clone images for infinite loop

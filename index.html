@@ -7,24 +7,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LoFeel</title>
         <link rel="stylesheet" href="style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     </head>
     
     <body>
         <div class="header-bar">
         <h1>LoFeel</h1>
 
-            <div class="dropdown">
-                <button class="dropbtn">How are we feeling?</button>
-                <div class="dropdown-content">
-                    <a href="#" data-value="bright">Bright</a> <!--using "a" tags with fake link #-->
-                    <a href="#" data-value="chill">Chill</a>
-                    <a href="#" data-value="focused">Focused</a>
-                    <a href="#" data-value="dreamy">Dreamy</a>
-                    <a href="#" data-value="sad">Sad</a>
+            <div class="button-group"> <!--The top 4 buttons-->
+                <div class="dropdown">
+                    <button class="dropbtn">Moods</button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="bright">Bright</a> <!--using "a" tags with fake link #-->
+                        <a href="#" data-value="chill">Chill</a>
+                        <a href="#" data-value="focused">Focused</a>
+                        <a href="#" data-value="dreamy">Dreamy</a>
+                        <a href="#" data-value="sad">Sad</a>
+                    </div>
                 </div>
 
-                <button id="new-song-btn">New Song</button>
+                <div class="dropdown">
+                    <button class="dropbtn">Themes</button>
+                    <div class="dropdown-content">
+                        <a href="#" data-value="movies">Movies</a>
+                        <a href="#" data-value="games">Games</a>
+                        <a href="#" data-value="fantasy">Fantasy</a>
+                        <a href="#" data-value="celtic">Celtic</a>
+                    </div>
+                </div>
+
+                    <button id="random-btn">Random</button>
+
+                    <button id="new-song-btn">New Song</button>
+                </div>
             </div>
+
         </div>
 
         <br>

@@ -3,14 +3,15 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    
+
+    font-family: 'Montserrat', sans-serif;
+
     background-repeat: no-repeat;
     background-size: cover;
   }
 
 h1 {
   color: #f7f6f3;
-  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
   margin: 0;
@@ -18,7 +19,6 @@ h1 {
   
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
     background: linear-gradient(90deg,rgba(253, 187, 45, 1) 0%, rgba(34, 193, 195, 1) 100%);
     color: #f7f6f3; /*text colour*/
     padding: 2rem;
@@ -33,21 +33,14 @@ body {
     gap: 1rem;
   }
 
-  .button-group {
-    display: flex;
-    align-items: center;
-    gap: 2rem; /*spacing between the two buttons*/
-  }
 
+  /*TOP FOUR BUTTONS*/
+  .button-group button {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2)  51%, rgba(0,0,0,0.3)  100%);
+    background-size: 200% auto; /* 🔥 YOU NEED THIS */
+    background-position: left center; /* 🔥 Start from left */
 
-/*DROPDOWN BUTTON*/
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropbtn {
-    background-color: rgba(0,0,0,0.2);
     color: #f7f6f3;
     padding: 16px;
     font-family: inherit;
@@ -55,8 +48,30 @@ body {
     font-weight: bold;
     border: none;
     border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
   }
   
+  .button-group { /*Layout for button group container*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+   }
+
+   .button-group button:hover {
+     background-position: right center; /*change the direction of the change*/
+     text-decoration: none;
+   }
+
+
+/*BUTTONS WITH DROPDOWNS*/
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
   .dropdown-content {
     display: none;
     position: absolute;
@@ -64,6 +79,7 @@ body {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border-radius: 10px;
   }
   
   .dropdown-content a { /*all <a> tags inside an element with the class "dropdown-content */
@@ -88,7 +104,7 @@ body {
   }
   
   .mood-bright {
-    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+    background: linear-gradient(90deg, rgb(30, 168, 171) 0%, rgba(253, 187, 45, 1) 100%);
   }
   
   .mood-sad {
@@ -102,9 +118,24 @@ body {
   .mood-focused {
     background: linear-gradient(90deg, rgba(31, 31, 44, 1) 0%, rgba(88, 72, 140, 1) 100%);
   }
-  
-  /*QUOTE BOX*/
 
+  .mood-movies { /*theme backgrounds starting here*/
+    background: linear-gradient(90deg,rgba(0, 0, 59, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  }
+
+  .mood-games {
+    background: linear-gradient(90deg, #515ada 0%,#efd5ff 100%);
+  }
+
+  .mood-fantasy { 
+    background: linear-gradient(90deg, rgb(33, 17, 34) 0%, rgb(186, 161, 236) 100% );
+  }
+
+  .mood-celtic {
+    background: linear-gradient(90deg,rgba(60, 107, 65, 1) 34%, rgba(160, 212, 97, 1) 100%);
+  }
+
+  /*QUOTE BOX*/
   .quote-box{
     font-weight: bold;
     letter-spacing: 1px;
@@ -136,22 +167,11 @@ body {
     border-radius: 30px; /*box with rounded corners*/
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
-  
-  #new-song-btn { /*hashtag selects the id*/
-    background-color: rgba(0,0,0,0.2);
-    color: #f7f6f3;
-    padding: 16px;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-  }
 
   /*CLOCK*/
   .clock-widget {
     display: flex;
-    flex-direction: column;     /*stack text vertically*/
+    flex-direction: column; /*stack text vertically*/
     justify-content: center;
     align-items: center;
 
@@ -208,6 +228,41 @@ body {
   }
   100% {
     transform: translateX(-50%); /*By the end let images move 50% to left*/
-    /*50% because we cloned the image once. After 60s we reach end of original set and start of cloned set. But here we reset, so it looks seemless*/
+    /*50% because we cloned the image once. After 60s we reach end of original set and start of cloned set. But here we reset, so it looks seemless (?*/
   }
+}
+
+/*IMAGE CREDITS*/
+.image-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-credit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: #f7f6f3;
+  background: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-wrapper:hover .photo-credit {
+  opacity: 1;
 }
