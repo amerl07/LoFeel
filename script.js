@@ -56,14 +56,14 @@ const musicVideos = { //video ids
     chill: ["qPAiYaZOGeQ", "BCxTQq0UiFs", "kyqpSycLASY", "UbXYxaf1itQ", "6mN1780N9vg", "2au51-rm6cE"],
     dreamy: ["FlnsZeivkPM", "BnjWrOTdKZo", "Jm8PuBFDabE", "UMhOGEo8O5A", "q22uHBl9qxw", "PpJQZH9B1Y4", "QltODNFwp20", "90QqkQNzMFk", "4dV96eVRrjk"],
     focused: ["amfWIRasxtI", "P4r9LeM7DiQ", "ptHnmgaFvwE", "FJflWlFyhRE"],
-    sad: ["xsDnEj2Hx4Q", "xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0"],
+    sad: ["xsDnEj2Hx4Q", "xDih5SwFs_c", "mjB0d2Jbanw", "DFuFDdL9sl4", "sF80I-TQiW0", "zqmIUKoe-q0"],
     bright: ["DJKIIzOD6y8", "UCQM2ounTcs", "gUbNlN_SqpE", "AhJ9-AtFje0"],
 
     //theme videos
-    movies: ["OaourFG3xYY", "lRuWS5MYImg", "Dg0IjOzopYU"],
-    games: ["kzxzCOXPt7g", "b9KH9QPdh6A", "JJCFQtTPq_8"],
-    fantasy: ["r9I2RqnaJEo"],
-    celtic: ["KHFyUGCdvB4", "ipFaubyDUT4"]
+    movies: ["OaourFG3xYY", "lRuWS5MYImg", "Fp5ghKduTK8"],
+    games: ["kzxzCOXPt7g", "b9KH9QPdh6A", "JJCFQtTPq_8", "Dg0IjOzopYU"],
+    fantasy: ["r9I2RqnaJEo", "GybMO_-77Xw", "lIUID8aZ9Oc"],
+    celtic: ["KHFyUGCdvB4", "ipFaubyDUT4", "r3crivOTB9g", "VcrdW4Y0hnI"]
   };
 
 function updateMusic(mood) {
@@ -180,7 +180,7 @@ function updateImageStrip(mood) {
 
             const credit = document.createElement("a");
             credit.className = "photo-credit";
-            credit.href = photo.links.html;
+            credit.href = `${photo.user.links.html}?utm_source=lofeel&utm_medium=referral`;
             credit.target = "_blank";
             credit.rel = "noopener noreferrer";
             credit.textContent = `Photo by ${photo.user.name} on Unsplash`;
